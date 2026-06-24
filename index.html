@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Game Interativo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url('fundo-geral.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            padding: 10px;
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .screen.active {
+            display: block; 
+        }
+
+        .screen img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+        }
+
+        .form-container {
+            background-color: #f4eedb;
+            border: 4px solid #8b5a2b;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: -5px;
+        }
+
+        .form-container textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 2px solid #5c3a21;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            border-bottom: 4px solid #2e7d32;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+
+        <div class="screen active" id="tela1" onclick="proximaTela('tela2')">
+            <img src="passo1.jpg" alt="Agro Game - Início">
+        </div>
+
+        <div class="screen" id="tela2" onclick="proximaTela('tela3')">
+            <img src="passo2.jpg" alt="Alerta Drone">
+        </div>
+
+        <div class="screen" id="tela3" onclick="proximaTela('tela4')">
+            <img src="passo3.jpg" alt="Clique para responder">
+        </div>
+
+        <div class="screen" id="tela4">
+            <img src="passo4.jpg" alt="Pergunta">
+            
+            <form action="https://formspree.io/f/xknpzkdr" method="POST" class="form-container">
+                <input type="hidden" name="_to" value="mari.estudos.books@gmail.com">
+                
+                <textarea name="resposta_usuario" placeholder="Digite aqui a sua resposta sobre o lixo eletrônico..." required></textarea>
+                <button type="submit" class="btn-enviar">ENVIAR RESPOSTA</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        function proximaTela(idProximaTela) {
+            document.querySelector('.screen.active').classList.remove('active');
+            document.getElementById(idProximaTela).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
